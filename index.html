@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Séléné</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Archivo+Black&family=Boldonse&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Space+Grotesk:wght@300..700&family=Syncopate:wght@400;700&family=Syne:wght@600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-nasa"></div>
+
+    <div class="dark-overlay" id="darkOverlay"></div>
+
+    <main class="content-container">
+      <div class="spacer-section">
+        <div class="scroll-indicator">↓</div>
+      </div>
+
+      <section class="scroll-section">
+        <div class="text-block center intro">
+          <h1>Séléné.html</h1>
+        </div>
+      </section>
+
+      <section class="scroll-section">
+        <div class="text-block left hidden">
+          <p>
+            Je recherche un nom sur la toile<br />
+            Les pages défilent sans espoir<br />
+            Mon esprit lentement se voile<br />
+            Puis je la vois dans le noir<br />
+            C’est l’astre lunaire qui luit<br />
+            Suspendu dans l’obscurité<br />
+            Un éclat pur presque infini<br />
+            Dans la nuit noire et figée<br />
+            L’esquisse devient plus belle
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-section">
+        <div class="text-block right hidden">
+          <p>
+            Je cherche l’inspiration<br />
+            Dans une image à inventer<br />
+            Une forme de composition<br />
+            Qu’Artemis m’aide à dessiner<br />
+            Je navigue sur Internet<br />
+            De la NASA jusqu’à Pinterest<br />
+            Chaque lien devient une quête<br />
+            Qui me guide vers le céleste<br />
+            L’esquisse devient plus belle
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-section">
+        <div class="text-block left hidden">
+          <p>
+            L’idée de l’affiche apparaît<br />
+            Portée par de nouvelles idées<br />
+            Les ondes sonores orchestrées<br />
+            Dans un site web dédié<br />
+            Je fixe enfin ma création<br />
+            Sur le fond noir de ma pensée<br />
+            Et l’affiche devient vision<br />
+            Née du web et du ciel mêlé<br />
+            L’esquisse devient plus belle
+          </p>
+        </div>
+      </section>
+
+      <section class="scroll-section">
+        <div class="text-block center hidden">
+          <p>
+            Dans mes recherches sur la toile<br />
+            La lune en beauté se révèle<br />
+            Une image alors se dévoile<br />
+            L’esquisse devient plus belle
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+      const lenis = new Lenis({
+        duration: 2.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 0.5,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              entry.target.classList.remove("hidden");
+            } else {
+              entry.target.classList.remove("visible");
+              entry.target.classList.add("hidden");
+            }
+          });
+        },
+        {
+          threshold: 0.4,
+        },
+      );
+
+      const darkOverlay = document.getElementById("darkOverlay");
+
+      window.addEventListener("scroll", () => {
+        const scrollRatio = Math.min(
+          window.scrollY / (window.innerHeight * 0.5),
+          1,
+        );
+        darkOverlay.style.opacity = scrollRatio;
+      });
+
+      const hiddenElements = document.querySelectorAll(".hidden");
+      hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
