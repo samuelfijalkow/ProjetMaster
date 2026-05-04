@@ -172,6 +172,115 @@ body {
     transform: translateX(0) translateY(0) !important;
 }
 
+/* Enter Overlay */
+.enter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.enter-overlay.hidden-overlay {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.enter-button {
+    font-family: "Schibsted Grotesk", sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.enter-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+    transform: scale(1.05);
+}
+
+/* Audio Controls */
+.audio-controls {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s;
+}
+
+.audio-controls:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.audio-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s;
+}
+
+.audio-btn:hover {
+    transform: scale(1.1);
+}
+
+.volume-slider {
+    width: 80px;
+    cursor: pointer;
+    accent-color: #ffffff;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    border: none;
+}
+
 @media (max-width: 768px) {
     .text-block h1 {
         font-size: 2.8rem;
